@@ -4,15 +4,17 @@ import { Link } from "expo-router";
 import { Image, Pressable, Text, View } from "react-native";
 
 interface Event {
+  id: string;
   title: string;
   location: string;
   image: string;
   datetime: string;
+  description: string;
 }
 
 export default function EventListItem({ event }: { event: Event }) {
   return (
-    <Link href="/Event" asChild>
+    <Link href={`/${event.id}`} asChild>
       <Pressable className="p-3 gap-3 border-b-7 border-black-200 pb-3">
         <View className="flex-row">
           <View className="flex-1 gap-2">
@@ -22,7 +24,7 @@ export default function EventListItem({ event }: { event: Event }) {
             <Text className="text-xl font-bold" numberOfLines={2}>
               {event.title}
             </Text>
-            {/* <Text className="text-gray-700">{event.location}</Text> */}
+            <Text className="text-gray-700">{event.location}</Text>
           </View>
           <Image
             source={{
